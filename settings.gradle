@@ -1,0 +1,42 @@
+//file:noinspection GroovyAssignabilityCheck
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositories {
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'spring-kafka-microservices-test'
+
+[
+        'consumer-service:consumer-service',
+        'consumer-service:consumer-service-api-messaging',
+
+        'producer-service:producer-service',
+        'producer-service:producer-service-api-messaging',
+
+        'eureka-server',
+].forEach {
+    include it
+}
+
+rootProject.children.each { project ->
+    {
+        setProjectBuildFileName(project)
+    }
+}
+
+void setProjectBuildFileName(project) {
+    project.buildFileName = "${project.name}.gradle"
+    project.children.each { subproject ->
+        {
+            setProjectBuildFileName(subproject)
+        }
+    }
+}
+

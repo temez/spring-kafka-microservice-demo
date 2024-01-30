@@ -1,0 +1,25 @@
+logging:
+  file:
+    path: ./logs
+
+spring:
+  application:
+    name: consumer-service
+
+  profiles:
+    active: eureka
+
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: test-group
+
+  cloud:
+
+    discovery:
+      enabled: false
+
+  main:
+    banner-mode: off
+

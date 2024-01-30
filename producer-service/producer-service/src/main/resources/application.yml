@@ -1,0 +1,31 @@
+server:
+  port: 3033
+
+logging:
+  file:
+    path: ./logs
+
+spring:
+  application:
+    name: producer-service
+
+  profiles:
+    active: eureka
+
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    consumer:
+      group-id: test-group
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+  cloud:
+
+    discovery:
+      enabled: false
+
+  main:
+    banner-mode: off
+

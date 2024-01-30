@@ -1,0 +1,26 @@
+server:
+  port: 8760
+
+spring:
+
+  application:
+    name: eureka-server
+
+  main:
+    banner-mode: off
+
+logging:
+  file:
+    path: ./logs
+
+eureka:
+
+  dashboard:
+    path: /dashboard
+
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+  instance:
+    preferIpAddress: true

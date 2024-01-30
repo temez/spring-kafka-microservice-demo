@@ -1,0 +1,44 @@
+//file:noinspection GroovyAssignabilityCheck
+//file:noinspection DependencyNotationArgument
+plugins {
+    id 'idea'
+    id 'java-library'
+    id 'org.springframework.boot' version "$springBootVersion"
+    id 'io.spring.dependency-management' version "$springDependencyManagementPluginVersion"
+}
+
+allprojects {
+
+    apply plugin: 'idea'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    version = '0.0.0.1dev'
+    group = 'dev.temez'
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
+    [compileJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    dependencies {
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+
+        implementation 'org.springframework.boot:spring-boot-starter'
+
+        implementation "org.jetbrains:annotations:$jetbrainsAnnotationsVersion"
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+        }
+    }
+}
+
+
+
+
